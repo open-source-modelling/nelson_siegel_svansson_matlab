@@ -27,5 +27,21 @@ The user is interested in the projected yield for government bonds with a maturi
 1,2,5,10, and 25 years. The calculated yield for those bonds are 0.39%, 0.61%, 1.66%, 2.58%, and 3.32%. 
 
   ```matlab
-ToDo
+TimeVec = [1; 2; 5; 10; 25];
+YieldVec = [0.0039; 0.0061; 0.0166; 0.0258; 0.0332];
+beta0   = 0.1; % initial guess
+beta1   = 0.1; % initial guess
+beta2   = 0.1; % initial guess
+beta3   = 0.1; % initial guess
+lambda0 = 1; % initial guess
+lambda1 = 1; % initial guess
+
+TimeResultVec = [1; 2; 5; 10; 25; 30; 31]; % Maturities for yields that we are interested in
+
+%% Implementation
+OptiParam = NSSMinimize(beta0, beta1, beta2, beta3, lambda0, lambda1, TimeVec, YieldVec); % The Nelder-Mead simplex algorithem is used to find the parameters that result in a curve with the minimum residuals compared to the market data.
+disp("Optimal parameters are")
+disp(OptiParam)
+
+ResultYield = NelsonSiegelSvansson(TimeResultVec, OptiParam(1), OptiParam(2), OptiParam(3), OptiParam(4), OptiParam(5), OptiParam(6)); % Calculate the yield for tergeted maturities using the calibrated partameters 
 ```
