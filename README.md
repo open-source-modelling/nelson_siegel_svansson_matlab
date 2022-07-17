@@ -1,4 +1,8 @@
-# Nelson-Siegel-Svannson algorithm
+<h1 align="center" style="border-botom: none">
+  <b>
+    📚 Nelson-Siegel-Svannson algorithm 📚     
+  </b>
+</h1>
 </br>
 
 Popular algorithm for fitting a yield curve to obseved data. 
