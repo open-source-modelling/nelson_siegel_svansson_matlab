@@ -19,7 +19,7 @@ Advantages:
 -  It produces a smooth and well behaved forward rate curve. 
 -  The intuitive explanation of the parameters. `beta0` is the long term interest rate and `beta0+beta1` is the instantaneous short-term rate. 
 
-To find the optimal value of the parameters, the Nelder-Mead simplex algorithm is used (Already implemented in Matlab). The link to the optimization algorithm is Gao, F. and Han, L. Implementing the Nelder-Mead simplex algorithm with adaptive parameters. 2012. Computational Optimization and Applications. 51:1, pp. 259-277
+To find the optimal value of the parameters, the Nelder-Mead simplex algorithm is used (Already implemented in Matlab's fminsearch function). The link to the optimization algorithm is Gao, F. and Han, L. Implementing the Nelder-Mead simplex algorithm with adaptive parameters. 2012. Computational Optimization and Applications. 51:1, pp. 259-277.
 
 The furmula for the yield curve (Value of the yield for a maturity at time 't') is given by the formula:
 
@@ -52,8 +52,8 @@ beta0   = 0.1; % initial guess
 beta1   = 0.1; % initial guess
 beta2   = 0.1; % initial guess
 beta3   = 0.1; % initial guess
-lambda0 = 1; % initial guess
-lambda1 = 1; % initial guess
+lambda0 = 1;   % initial guess
+lambda1 = 1;   % initial guess
 
 TimeResultVec = [1; 2; 5; 10; 25; 30; 31]; % Maturities for yields that we are interested in
 
@@ -62,5 +62,5 @@ OptiParam = NSSMinimize(beta0, beta1, beta2, beta3, lambda0, lambda1, TimeVec, Y
 disp("Optimal parameters are")
 disp(OptiParam)
 
-ResultYield = NelsonSiegelSvansson(TimeResultVec, OptiParam(1), OptiParam(2), OptiParam(3), OptiParam(4), OptiParam(5), OptiParam(6)); % Calculate the yield for tergeted maturities using the calibrated partameters 
+ResultYield = NelsonSiegelSvansson(TimeResultVec, OptiParam(1), OptiParam(2), OptiParam(3), OptiParam(4), OptiParam(5), OptiParam(6)); % Calculate the yield for tergeted maturities using the calibrated partameters
 ```
